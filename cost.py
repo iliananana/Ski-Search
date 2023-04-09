@@ -38,6 +38,8 @@ def get_snowfall_cost(resort):
         return 2
     else:
         return 0
+    
+def get_cost(resort, location, time):
+    return get_traffic_cost(location, time) + get_snowfall_cost(resort)
 
-print("the cost of going down I-70 at 7:00AM is", get_traffic_cost("I-70", "07:00AM"))
-print("the cost of going to Arapahoe Basin is", get_snowfall_cost("Arapahoe Basin"))
+print('the cost of going down I-70 at 7:00AM to Arapahoe Basin is', get_cost('Arapahoe Basin', 'I-70', '07:00AM'))
