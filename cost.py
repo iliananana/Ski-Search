@@ -3,11 +3,9 @@ from traffic import traffic_data
 
 import pandas as pd
 
-def get_traffic_cost(location, time):
+def get_traffic_cost(location):
     location_df = traffic_data[traffic_data['location'] == location]
-    df = location_df[location_df['time'] == time]
-
-    delay = df['delay'].astype(int).iloc[0]
+    delay = location_df['delay'].astype(int).iloc[0]
 
     if delay < 5:
         return 0
@@ -38,8 +36,30 @@ def get_snowfall_cost(resort):
         return 2
     else:
         return 0
-    
-def get_cost(resort, location, time):
-    return get_traffic_cost(location, time) + get_snowfall_cost(resort)
 
-print('the cost of going down I-70 at 7:00AM to Arapahoe Basin is', get_cost('Arapahoe Basin', 'I-70', '07:00AM'))
+def get_heuristic(x, y):
+    if x in snowfall.df['title_short'].tolist():
+        x_cost = get_snowfall_cost(x)
+    else:
+        x_cost = get_traffic_cost(x)
+    
+    if y in snowfall.df['title_short'].tolist():
+        y_cost = get_snowfall_cost(y)
+    else:
+        y_cost = get_traffic_cost(y)
+    
+    return x_cost + y_cost
+
+
+def get_cost(x):
+    if x == 'Colorado State University':
+        x_cost = 0
+    elif x in snowfall.df['title_short'].tolist():
+        x_cost = get_snowfall_cost(x)
+    else:
+        x_cost = get_traffic_cost(x)
+    return x_cost
+
+print('the heuristic of to Arapahoe Basin from I-70mm_10 is', get_heuristic('Arapahoe Basin', 'I-70mm_10'))
+print('the cost of I-25mm_50 is', get_cost('I-25mm_50'))
+print('the cost of Colorado State University is', get_cost('Colorado State University'))
