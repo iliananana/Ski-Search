@@ -5,15 +5,16 @@ import pandas as pd
 
 ski_resorts = snowfall.df['title_short'].tolist()
 
+def get_crashes():
+    return ['I-70mm_50', 'I-70mm_70']
+
 def get_traffic_cost(location):
     location_df = traffic_data[traffic_data['location'] == location]
     delay = location_df['delay'].astype(int).iloc[0]
 
-    crash = False
     cost = 0
 
-    if (location == 'I-70mm_50'):
-        crash = True
+    if location in get_crashes():
         cost += 100
 
     if delay < 5:
@@ -49,7 +50,7 @@ def get_snowfall_cost(resort):
         cost += 2
     else:
         cost += 0
-    
+
     return cost
 
 def get_heuristic(x, y):
