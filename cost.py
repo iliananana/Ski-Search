@@ -3,47 +3,62 @@ from traffic import traffic_data
 
 import pandas as pd
 
+ski_resorts = snowfall.df['title_short'].tolist()
+
 def get_traffic_cost(location):
     location_df = traffic_data[traffic_data['location'] == location]
     delay = location_df['delay'].astype(int).iloc[0]
 
+    crash = False
+    cost = 0
+
+    if (location == 'I-70mm_50'):
+        crash = True
+        cost += 100
+
     if delay < 5:
-        return 0
+        cost += 0
     elif delay < 15:
-        return 4
+        cost += 4
     elif delay < 30:
-        return 12
+        cost += 12
     elif delay < 60:
-        return 20
+        cost += 20
     elif delay < 90:
-        return 30
+        cost += 30
     else:
-        return 50
+        cost += 50
+    
+    return cost
 
 def get_snowfall_cost(resort):
     df = snowfall.df[snowfall.df['title_short'] == resort]
     snowfall_24hr = df['snow'].tolist()[0]['last24']
+
+    cost = 0
     
     if snowfall_24hr == 0:
-        return 50
+        cost += 50
     elif snowfall_24hr < 2:
-        return 20
+        cost += 20
     elif snowfall_24hr < 4:
-        return 10
+        cost += 10
     elif snowfall_24hr < 6:
-        return 5
+        cost += 5
     elif snowfall_24hr < 10:
-        return 2
+        cost += 2
     else:
-        return 0
+        cost += 0
+    
+    return cost
 
 def get_heuristic(x, y):
-    if x in snowfall.df['title_short'].tolist():
+    if x in ski_resorts:
         x_cost = get_snowfall_cost(x)
     else:
         x_cost = get_traffic_cost(x)
     
-    if y in snowfall.df['title_short'].tolist():
+    if y in ski_resorts:
         y_cost = get_snowfall_cost(y)
     else:
         y_cost = get_traffic_cost(y)
@@ -54,7 +69,7 @@ def get_heuristic(x, y):
 def get_cost(x):
     if x == 'Colorado State University':
         x_cost = 0
-    elif x in snowfall.df['title_short'].tolist():
+    elif x in ski_resorts:
         x_cost = get_snowfall_cost(x)
     else:
         x_cost = get_traffic_cost(x)
