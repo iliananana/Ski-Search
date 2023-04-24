@@ -1,7 +1,9 @@
 import snowfall
 from traffic import traffic_data
+import ast
 
 import pandas as pd
+snow_df = pd.read_csv("Ski-Search/3-21-snowreport.csv")
 
 ski_resorts = snowfall.df['title_short'].tolist()
 
@@ -33,8 +35,9 @@ def get_traffic_cost(location):
     return cost
 
 def get_snowfall_cost(resort):
-    df = snowfall.df[snowfall.df['title_short'] == resort]
-    snowfall_24hr = df['snow'].tolist()[0]['last24']
+    df = snow_df[snow_df['title_short'] == resort]
+    snowfall_24hr = df['snow'][0]
+    snowfall_24hr = ast.literal_eval(snowfall_24hr)['last24']
 
     cost = 0
     
