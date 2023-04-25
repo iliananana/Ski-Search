@@ -15,8 +15,4 @@ OTS_df = pd.DataFrame(OTS_resorts)
 # For out of season data from march 31st
 march_df = pd.read_csv("Ski-Search/3-21-snowreport.csv")
 march_resorts = march_df['title_short']
-print(march_resorts)
-
-# df = snow_df[snow_df['title_short'] == resort]
-# snowfall_24hr = df['snow'][0]
-# snowfall_24hr = ast.literal_eval(snowfall_24hr)['last24']
+march_resorts_list = list(march_resorts)
