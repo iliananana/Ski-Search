@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+
 app=Flask(__name__)
 
 @app.route('/')
@@ -10,7 +11,8 @@ def root():
         'popup':'Starting at the CSU CS Building'
         }
     ]
-    return render_template('index.html',markers=markers )
+    resorts = []
+    return render_template('index.html',markers=markers,resorts=resorts )
 
 if __name__ == '__main__':
     app.run(host="localhost", port=8080, debug=True)
