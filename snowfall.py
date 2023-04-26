@@ -18,11 +18,10 @@ march_df = pd.read_csv("/Users/ilianacastillon/Documents/Spring23/cs540/Ski-Sear
 march_resorts = march_df['title_short']
 march_resorts_list = list(march_resorts)
 
-print(march_resorts_list)
 snowfall_24hr = march_resorts_list
 snowfall_24hr = march_df['snow']
 snowfall_24hr = snowfall_24hr.apply(ast.literal_eval)
 last24_values_df = snowfall_24hr.apply(lambda x: x['last24'])
 last24_values_list = last24_values_df.tolist()
-print(last24_values_list)
+
 
