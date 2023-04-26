@@ -1,4 +1,5 @@
 import heapq
+import snowfall
 from cost import get_crashes, get_cost, get_heuristic
 
 graph = {
@@ -34,22 +35,7 @@ graph = {
     'I-70mm_120' : {'neighbors': {'I-70mm_110'}},
 }
 
-resorts = ['Arapahoe Basin', # added
-           'Aspen Snowmass',
-           'Beaver Creek', # added
-           'Breckenridge', # added
-           'Cooper',
-           'Copper Mountain', # added
-           'Echo Mountain',
-           'Eldora',  # added
-           'Keystone', # added
-           'Loveland', # added
-           'Monarch',
-           'Purgatory',
-           'Silverton',
-           'Steamboat',
-           'Vail', # added
-           'Winter Park'] # added
+resorts = snowfall.march_resorts_list
 
 def get_input(best_neighbor, goal):
     while True:
