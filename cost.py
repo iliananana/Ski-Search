@@ -3,9 +3,9 @@ from traffic import traffic_data
 import ast
 
 import pandas as pd
-snow_df = pd.read_csv("Ski-Search/3-21-snowreport.csv")
+snow_df = pd.read_csv("/Users/ilianacastillon/Documents/Spring23/cs540/Ski-Search/3-21-snowreport.csv")
 
-ski_resorts = snowfall.df['title_short'].tolist()
+ski_resorts = snowfall.march_df['title_short'].tolist()
 
 def get_crashes():
     return ['I-70mm_50', 'I-70mm_70']
