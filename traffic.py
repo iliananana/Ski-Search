@@ -29,22 +29,21 @@ traffic_data
 
 mile_markers = traffic_data.loc[:, ['location']]
 
-mile_markers["coordinates"] = [(40.5853, -105.0844), # Fort Collins1
-                     (40.3978, -105.0746), # Loveland2
-                     (40.3111, -105.0779), # Berthoud3
-                     (40.1672, -105.1019), # Longmont4
-                     (40.0149, -105.2705), # Boulder5
-                     (39.7555, -105.2211), # Golden6
-                     (39.7416, -105.5136), # Idaho Springs7
-                     (39.7042, -105.6969), # Georgetown8
-                     (39.5734, -106.0941), # Frisco9
-                     (39.6403, -106.3742), # Vail10
-                     (39.6442, -106.5947), # Avon 11
-                     (39.6519, -106.8151), # Eagle 12
-                     (39.6456, -106.9536), # Canyon 14
-                     (39.6558, -107.038),  # Glenwood 15
-                     (39.5505, -107.3248), # Carbondale 16
-                     (39.4022, -107.2176), # Basalt17
-                     (39.3636, -107.0312), # Dotsero
-                     (39.1911, -106.8188)]# Aspen
-mile_markers
+mile_markers["coordinates"] = [(440.574142, -105.083542), # Fort Collins1
+                     (40.524524, -104.990723), # Timnath - 8.7
+                     (40.400984, -104.993505), # Johnstown
+                     (40.278231, -104.980678), # Berthoud
+                     (40.152524, -104.979294), # weld county
+                     (40.027856, -104.980411), # broom field
+                     (39.903807, -104.990085), # north glen  
+                     (39.800740, -105.030046), # Berkley 
+                     (39.745779, -105.151682), # Apple wood west
+                     (39.707060, -105.279514), # mnt vernon
+                     (39.730882, -105.425882), # clear creek county
+                     (39.757728, -105.567318), #  idaho springs
+                     (39.717682, -105.696525), #  georgetown
+                     (39.699918, -105.837528),  #  # clear creek county
+                     (39.673378, -105.969523), #  summit county
+                     (39.591038, -106.100264), # frisco
+                     (39.502069, -106.165791), # copper
+                     (39.613744, -106.279037)]# vail
