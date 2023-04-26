@@ -35,9 +35,13 @@ def get_traffic_cost(location):
     return cost
 
 def get_snowfall_cost(resort):
-    df = snow_df[snow_df['title_short'] == resort]
-    snowfall_24hr = df['snow'][0]
-    snowfall_24hr = ast.literal_eval(snowfall_24hr)['last24']
+    # df = snow_df[snow_df['title_short'] == resort]
+    # snowfall_24hr = df['snow'][0]
+    # snowfall_24hr = ast.literal_eval(snowfall_24hr)['last24']
+    resort_index = snowfall.march_resorts_list.index(resort)
+    print(resort_index)
+    snowfall_24hr = snowfall.last24_values_list[resort_index]
+    print(snowfall_24hr)
     # print(snowfall_24hr)
     cost = 0
     
@@ -79,6 +83,6 @@ def get_cost(x):
         x_cost = get_traffic_cost(x)
     return x_cost
 
-print('the heuristic of to Arapahoe Basin from I-70mm_10 is', get_heuristic('Arapahoe Basin', 'I-70mm_10'))
+print('the heuristic of to Arapahoe Basin from I-70mm_10 is', get_heuristic('Keystone', 'I-70mm_10'))
 print('the cost of I-25mm_50 is', get_cost('I-25mm_50'))
 print('the cost of Colorado State University is', get_cost('Colorado State University'))
