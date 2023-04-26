@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Flask Leaflet Website</title>
+  <title>Ski Search</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/universal.css') }}" />
@@ -14,11 +14,24 @@
   crossorigin=""></script>
 </head>
 
+<h1>Where would you like to ski today?</h1>
+<label for="touch" class=drop><span>Select a Colorado Resort</span></label>
+<form>
+  <select class="slide" name="resort">
+    {% for resort in resorts %}
+      <option value="{{ resort }}"> {{ resort }} </option>
+    {% endfor %}
+  </select>
+  <div style="text-align: center;">
+    <input type="submit" value="Submit" style="height: 40px; width: 100%; background-color: #2d2f31; color: white;">
+  </div>
+</form>
+
+
 <body>
   <div id="map"></div>
   <script src="{{ url_for('static', filename='js/universal.js') }}" /></script>
   <script>
-
     {% for marker in markers %}
       L.marker([{{ marker['lat'] }}, {{ marker['lon'] }}]).addTo(map)
       .bindPopup("{{ marker['popup'] }}")
