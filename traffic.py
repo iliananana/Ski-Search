@@ -26,3 +26,25 @@ frames = [df_I25, df_I70]
 traffic_data = pd.concat(frames).reset_index(drop=True)
 
 traffic_data
+
+mile_markers = traffic_data.loc[:, ['location']]
+
+mile_markers["coordinates"] = [(40.5853, -105.0844), # Fort Collins1
+                     (40.3978, -105.0746), # Loveland2
+                     (40.3111, -105.0779), # Berthoud3
+                     (40.1672, -105.1019), # Longmont4
+                     (40.0149, -105.2705), # Boulder5
+                     (39.7555, -105.2211), # Golden6
+                     (39.7416, -105.5136), # Idaho Springs7
+                     (39.7042, -105.6969), # Georgetown8
+                     (39.5734, -106.0941), # Frisco9
+                     (39.6403, -106.3742), # Vail10
+                     (39.6442, -106.5947), # Avon 11
+                     (39.6519, -106.8151), # Eagle 12
+                     (39.6456, -106.9536), # Canyon 14
+                     (39.6558, -107.038),  # Glenwood 15
+                     (39.5505, -107.3248), # Carbondale 16
+                     (39.4022, -107.2176), # Basalt17
+                     (39.3636, -107.0312), # Dotsero
+                     (39.1911, -106.8188)]# Aspen
+mile_markers

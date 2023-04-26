@@ -6,8 +6,8 @@ app=Flask(__name__)
 def root():
     markers=[
         {
-        'lat':40.573710,
-        'lon':-105.081020,
+        'lat':40.573808,
+        'lon':-105.0826341,
         'popup':'Starting at the CSU CS Building'
         }
     ]
