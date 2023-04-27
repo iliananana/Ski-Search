@@ -76,6 +76,6 @@ def get_cost(x):
         x_cost = get_traffic_cost(x)
     return x_cost
 
-print('the heuristic of to Arapahoe Basin from I-70mm_10 is', get_heuristic('Keystone', 'I-70mm_10'))
-print('the cost of I-25mm_50 is', get_cost('I-25mm_50'))
-print('the cost of Colorado State University is', get_cost('Colorado State University'))
+# print('the heuristic of to Arapahoe Basin from I-70mm_10 is', get_heuristic('Keystone', 'I-70mm_10'))
+# print('the cost of I-25mm_50 is', get_cost('I-25mm_50'))
+# print('the cost of Colorado State University is', get_cost('Colorado State University'))

@@ -37,17 +37,17 @@ graph = {
 
 resorts = snowfall.march_resorts_list
 
-def get_input(best_neighbor, goal):
-    while True:
-        ans = input(f"Re-evaluating trip to {goal}, Accept new goal: {best_neighbor} (y/n)")
-        if ans == 'y':
-            goal = best_neighbor
-            print('Accepted new goal resort: ', goal)
-            break
-        elif ans == 'n':
-            print(f"Denied new goal: {best_neighbor}, Continuing to {goal}")
-            break
-    return goal
+# def get_input(best_neighbor, goal):
+#     while True:
+#         ans = input(f"Re-evaluating trip to {goal}, Accept new goal: {best_neighbor} (y/n)")
+#         if ans == 'y':
+#             goal = best_neighbor
+#             print('Accepted new goal resort: ', goal)
+#             break
+#         elif ans == 'n':
+#             print(f"Denied new goal: {best_neighbor}, Continuing to {goal}")
+#             break
+#     return goal
 
 def crash_reroute(current, goal, total_cost):
     print(f'crash at {current} re-evaluating goal resort...')        # find the resort with the lowest estimated cost
@@ -60,9 +60,7 @@ def crash_reroute(current, goal, total_cost):
                 if priority < best_priority:
                     best_neighbor = neighbor
                     best_priority = priority
-    if best_neighbor:
-        goal = get_input(best_neighbor, goal)
-    return goal
+    return best_neighbor
 
 def heuristic(goal, current, neighbor):
     current_cost = get_cost(current)
@@ -71,12 +69,16 @@ def heuristic(goal, current, neighbor):
         return (goal == neighbor) * (current_cost - neighbor_cost)
     return get_heuristic(goal, neighbor)
 
-def a_star_search(start, goal):
-    frontier = [(0, start)]
-    visited = {}
-    total_cost = {}
-    visited[start] = None
-    total_cost[start] = 0
+def a_star_search(start, goal, frontier, visited, total_cost):
+    if not frontier: frontier = [(0, start)]
+    if not visited: 
+        visited = {}
+        visited[start] = None
+    if not total_cost:
+        total_cost = {}
+        total_cost[start] = 0
+
+    suggested_goal = None
 
     while frontier:
         current = heapq.heappop(frontier)[1]
@@ -88,7 +90,7 @@ def a_star_search(start, goal):
                 current = visited[current]
                 path.append(current)
             path.reverse()
-            return path, total_cost, goal
+            return "done", path, total_cost, goal, None
 
         for neighbor in graph[current]['neighbors']:
             if neighbor != current:
@@ -100,41 +102,63 @@ def a_star_search(start, goal):
                     visited[neighbor] = current
 
         if current in get_crashes():
-            goal = crash_reroute(current, goal, total_cost)
+            suggested_goal = crash_reroute(current, goal, total_cost)
+            if suggested_goal: return "reroute", suggested_goal, frontier, visited, total_cost
 
-    return visited, total_cost, goal
+    return "done", visited, total_cost, goal, None
 
-start = 'Colorado State University'
+def test_a_star_search(start, goal):
+    status, val1, val2, val3, val4 = a_star_search(start, goal, None, None, None)
+    while status == "reroute":
+        suggested_goal = val1
+        frontier = val2
+        visited = val3
+        total_cost = val4
+        ans = input(f"Re-evaluating trip to {goal}, Accept new goal: {suggested_goal} (y/n)")
+        if ans == 'y':
+            goal = suggested_goal
+            print(f'Accepted new goal resort: {goal}')
+        elif ans == 'n':
+            print(f"Denied new goal: {suggested_goal}, Continuing to {goal}")
+        status, val1, val2, val3, val4 = a_star_search(start, goal, frontier, visited, total_cost)
+    path = val1
+    total_cost = val2
+    new_goal = val3
 
-goal = 'Winter Park'
-path, total_cost, new_goal = a_star_search(start, goal)
-print('initial goal:', goal)
-print('updated goal:', new_goal)
-print('The optimal path to take is:', path)
-print('The total cost is:', total_cost[new_goal])
-print()
+    return path, total_cost, new_goal
 
 
-goal = 'Eldora'
-path, total_cost, new_goal = a_star_search(start, goal)
-print('initial goal:', goal)
-print('updated goal:', new_goal)
-print('The optimal path to take is:', path)
-print('The total cost is:', total_cost[new_goal])
-print()
+# start = 'Colorado State University'
 
-goal = 'Copper Mountain'
-path, total_cost, new_goal = a_star_search(start, goal)
-print('initial goal:', goal)
-print('updated goal:', new_goal)
-print('The optimal path to take is:', path)
-print('The total cost is:', total_cost[new_goal])
-print()
+# goal = 'Winter Park'
+# path, total_cost, new_goal = test_a_star_search(start, goal)
+# print('initial goal:', goal)
+# print('updated goal:', new_goal)
+# print('The optimal path to take is:', path)
+# print('The total cost is:', total_cost[new_goal])
+# print()
 
-goal = 'Beaver Creek'
-path, total_cost, new_goal = a_star_search(start, goal)
-print('initial goal:', goal)
-print('updated goal:', new_goal)
-print('The optimal path to take is:', path)
-print('The total cost is:', total_cost[new_goal])
-print()
+
+# goal = 'Eldora'
+# path, total_cost, new_goal = test_a_star_search(start, goal)
+# print('initial goal:', goal)
+# print('updated goal:', new_goal)
+# print('The optimal path to take is:', path)
+# print('The total cost is:', total_cost[new_goal])
+# print()
+
+# goal = 'Copper Mountain'
+# path, total_cost, new_goal = test_a_star_search(start, goal)
+# print('initial goal:', goal)
+# print('updated goal:', new_goal)
+# print('The optimal path to take is:', path)
+# print('The total cost is:', total_cost[new_goal])
+# print()
+
+# goal = 'Beaver Creek'
+# path, total_cost, new_goal = test_a_star_search(start, goal)
+# print('initial goal:', goal)
+# print('updated goal:', new_goal)
+# print('The optimal path to take is:', path)
+# print('The total cost is:', total_cost[new_goal])
+# print()
