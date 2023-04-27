@@ -1,11 +1,10 @@
 import snowfall
 from traffic import traffic_data
-import ast
 
 import pandas as pd
-snow_df = pd.read_csv("Ski-Search/3-21-snowreport.csv")
+snow_df = pd.read_csv("Ski-Search/3-21-ikon-snowreport.csv")
 
-ski_resorts = snowfall.df['title_short'].tolist()
+ski_resorts = snowfall.march_df['title_short'].tolist()
 
 def get_crashes():
     return ['I-70mm_50', 'I-70mm_70']
@@ -35,10 +34,8 @@ def get_traffic_cost(location):
     return cost
 
 def get_snowfall_cost(resort):
-    df = snow_df[snow_df['title_short'] == resort]
-    snowfall_24hr = df['snow'][0]
-    snowfall_24hr = ast.literal_eval(snowfall_24hr)['last24']
-
+    resort_index = snowfall.march_resorts_list.index(resort)
+    snowfall_24hr = snowfall.last24_values_list[resort_index]
     cost = 0
     
     if snowfall_24hr == 0:
@@ -79,6 +76,6 @@ def get_cost(x):
         x_cost = get_traffic_cost(x)
     return x_cost
 
-print('the heuristic of to Arapahoe Basin from I-70mm_10 is', get_heuristic('Arapahoe Basin', 'I-70mm_10'))
-print('the cost of I-25mm_50 is', get_cost('I-25mm_50'))
-print('the cost of Colorado State University is', get_cost('Colorado State University'))
+# print('the heuristic of to Arapahoe Basin from I-70mm_10 is', get_heuristic('Keystone', 'I-70mm_10'))
+# print('the cost of I-25mm_50 is', get_cost('I-25mm_50'))
+# print('the cost of Colorado State University is', get_cost('Colorado State University'))

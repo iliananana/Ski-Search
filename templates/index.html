@@ -25,6 +25,13 @@
   <div style="text-align: center;">
     <input type="submit" value="Submit" style="height: 40px; width: 100%; background-color: #2d2f31; color: white;">
   </div>
+  {% if reroute: %}
+  <div style="text-align: center;">
+    There's an accident on your route! would you like to go to <h3>{{reroute}}</h3> instead?
+    <input name="yesbtn" type="submit" value="Yes" style="height: 40px; width: 100%; background-color: #2d2f31; color: white;">
+    <input name="nobtn" type="submit" value="NO!" style="height: 40px; width: 100%; background-color: #2d2f31; color: red;">
+  </div>
+  {% endif %}
 </form>
 
 
