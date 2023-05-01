@@ -14,10 +14,8 @@ graph = {
     'I-70mm_10' : {'neighbors': {'I-25mm_60', 'I-70mm_20'}},
     'I-70mm_20' : {'neighbors': {'I-70mm_10', 'I-70mm_30'}},
     'I-70mm_30' : {'neighbors': {'I-70mm_20', 'Winter Park', 'I-70mm_40'}},
-    #'Idaho Springs' : {'neighbors': {'I-70mm_30', 'I-70mm_40'}},
     'Winter Park' : {'neighbors': {'I-70mm_30', 'I-70mm_40'}},
     'I-70mm_40' : {'neighbors': {'I-70mm_30', 'Winter Park', 'I-70mm_50'}},
-    #'Georgetown' : {'neighbors': {'I-70mm_40', 'I-70mm_50'}},
     'I-70mm_50' : {'neighbors': {'I-70mm_40', 'Loveland', 'Arapahoe Basin', 'I-70mm_60'}},
     'Loveland' : {'neighbors': {'I-70mm_50', 'I-70mm_60'}},
     'Arapahoe Basin': {'neighbors': {'I-70mm_50', 'I-70mm_60'}},
@@ -37,20 +35,8 @@ graph = {
 
 resorts = snowfall.march_resorts_list
 
-# def get_input(best_neighbor, goal):
-#     while True:
-#         ans = input(f"Re-evaluating trip to {goal}, Accept new goal: {best_neighbor} (y/n)")
-#         if ans == 'y':
-#             goal = best_neighbor
-#             print('Accepted new goal resort: ', goal)
-#             break
-#         elif ans == 'n':
-#             print(f"Denied new goal: {best_neighbor}, Continuing to {goal}")
-#             break
-#     return goal
-
 def crash_reroute(current, goal, total_cost):
-    print(f'crash at {current} re-evaluating goal resort...')        # find the resort with the lowest estimated cost
+    print(f'crash at {current} re-evaluating goal resort...')       
     best_neighbor = None
     best_priority = float('inf')
     for neighbor in graph[current]['neighbors']:
@@ -126,39 +112,3 @@ def test_a_star_search(start, goal):
     new_goal = val3
 
     return path, total_cost, new_goal
-
-
-# start = 'Colorado State University'
-
-# goal = 'Winter Park'
-# path, total_cost, new_goal = test_a_star_search(start, goal)
-# print('initial goal:', goal)
-# print('updated goal:', new_goal)
-# print('The optimal path to take is:', path)
-# print('The total cost is:', total_cost[new_goal])
-# print()
-
-
-# goal = 'Eldora'
-# path, total_cost, new_goal = test_a_star_search(start, goal)
-# print('initial goal:', goal)
-# print('updated goal:', new_goal)
-# print('The optimal path to take is:', path)
-# print('The total cost is:', total_cost[new_goal])
-# print()
-
-# goal = 'Copper Mountain'
-# path, total_cost, new_goal = test_a_star_search(start, goal)
-# print('initial goal:', goal)
-# print('updated goal:', new_goal)
-# print('The optimal path to take is:', path)
-# print('The total cost is:', total_cost[new_goal])
-# print()
-
-# goal = 'Beaver Creek'
-# path, total_cost, new_goal = test_a_star_search(start, goal)
-# print('initial goal:', goal)
-# print('updated goal:', new_goal)
-# print('The optimal path to take is:', path)
-# print('The total cost is:', total_cost[new_goal])
-# print()
