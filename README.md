@@ -1,8 +1,9 @@
 # SkiSearch
 
 ## Project description  
+This is a program designed to recommend the optimal Colorado ski resort to travel to starting at Colorado State University
 
-This is a program created for CSU CS540 designed to recommend the optimal Colorado ski resort to travel to starting at Colorado State University. 
+Created for CSU course CS540: Artificial Intelligence
 
 ## Data sources
 The snow data we utilized is sourced from [OnTheSnow](https://www.onthesnow.com/colorado/skireport)
@@ -10,7 +11,7 @@ The snow data we utilized is sourced from [OnTheSnow](https://www.onthesnow.com/
 All of the traffic data is all simulated
 
 ## Real Time Changes 
-At the time of finishing this project, most of the Colorado ski resorts had closed for the season. Due to this, all of the data in the repo comes from March 21st, 2023. To use live data, make changes in snow.py to use the pandas <code> OTS_df </code> data frame instead of <code> march_df </code>. 
+At the time of finishing this project, most of the Colorado ski resorts had closed for the season. Due to this, all of the data in the repo comes from March 21st, 2023. To use live data, make changes in snow.py to use the pandas <code>OTS_df</code> data frame instead of <code>march_df</code>. 
 
 ## Dependencies/Python libraries used
 - python 3.9
@@ -21,6 +22,7 @@ At the time of finishing this project, most of the Colorado ski resorts had clos
 - ast
 - bs4
 - heapq
+- folium
 
 ## How to run 
 - install all of the libraries listed above
