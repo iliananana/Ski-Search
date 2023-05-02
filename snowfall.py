@@ -14,7 +14,7 @@ OTS_resorts = data["props"]["pageProps"]["resorts"]["1"]["data"]
 OTS_df = pd.DataFrame(OTS_resorts)
 
 # For out of season data from march 31st
-march_df = pd.read_csv("/Users/ilianacastillon/Documents/Spring23/cs540/Ski-Search/3-21-ikon-snowreport.csv")
+march_df = pd.read_csv("Ski-Search/3-21-ikon-snowreport.csv")
 march_resorts = march_df['title_short']
 march_resorts_list = list(march_resorts)
 
